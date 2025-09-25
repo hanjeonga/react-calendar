@@ -1,20 +1,19 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import path from "path";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-    }),
-  ],
+  plugins: [react(), dts()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   build: {
     lib: {
-      entry: resolve(__dirname, "src/lib/index.ts"),
-      name: "MyCalendarLibrary",
-      formats: ["es", "umd"],
+      entry: "src/index.ts",
+      name: "react-calendar",
       fileName: (format) => `react-calendar.${format}.js`,
     },
     rollupOptions: {
