@@ -1,73 +1,160 @@
-# React + TypeScript + Vite
+# 📅 React Calendar Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Vite + React + TypeScript + vanilla-extract** 기반으로 제작된 **재사용 가능한 캘린더 라이브러리**입니다.  
+날짜 단일 선택(DatePicker)과 날짜 범위 선택(RangePicker)을 지원하며, 다양한 커스터마이징이 가능합니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- **두 가지 모드 지원**
+  - ✅ `DatePicker` → 단일 날짜 선택
+  - ✅ `RangePicker` → 날짜 범위 선택 (시작일 ~ 종료일)
+- **출력 방식 선택**
+  - 드롭다운(default)
+  - 모달
+- **범위 선택 고급 기능**
+  - 시작일 기준 `threshold` (종료일 최대 선택 가능일 제한)
+  - 시작일과 종료일 구간은 다른 배경색/스타일 적용 가능
+  - 시작일 클릭 후 **호버 시 날짜 구간 하이라이트**
+- **다국어 지원**
+  - 영어(en, default), 한국어(ko), 숫자(number)
+- **포맷 커스터마이징**
+  - 날짜 표시 형식 기본값: `YYYY.MM.DD`
+  - `props.format` 으로 원하는 포맷 지정 가능
+- **커스텀 아이콘 지원**
+  - 기본값: `react-icons/ai`의 달력 아이콘
+  - 원하는 SVG 컴포넌트 교체 가능
+- **접근성(ARIA) 지원**
+  - 키보드 접근 및 스크린리더 친화적
+- **스타일링**
+  - `vanilla-extract` 기반
+  - `theme` prop 으로 선택 색상/배경/라운드값 커스터마이징 가능
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# 설치
+yarn add your-calendar-lib
+# 또는
+npm install your-calendar-lib
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **DatePicker (단일 날짜 선택)**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```javascript
+import { DatePicker } from "your-calendar-lib";
+
+export default function App() {
+  return (
+    <DatePicker
+      onChange={(date) => console.log("선택한 날짜:", date)}
+      displayMode="dropdown" // 또는 "modal"
+      monthFormat="ko" // "en" | "ko" | "number"
+      format="YYYY/MM/DD"
+    />
+  );
+}
 ```
+
+---
+
+- **RangePicker (날짜 범위 선택)**
+
+```javascript
+import { RangePicker } from "your-calendar-lib";
+
+export default function App() {
+  return (
+    <RangePicker
+      onChange={({ startDate, endDate }) =>
+        console.log("선택한 구간:", startDate, endDate)
+      }
+      separator="~" // 또는 "-"
+      displayMode="modal"
+      monthFormat="en"
+      threshold={30} // 시작일 기준 최대 30일까지만 선택 가능
+    />
+  );
+}
+```
+
+---
+
+## 🎨 Theme Customization
+
+theme prop을 통해 선택된 날짜 및 구간의 스타일을 변경할 수 있습니다.
+
+```javascript
+<DatePicker
+  theme={{
+    daySelectedBg: "#007bff",
+    daySelectedColor: "#fff",
+    daySelectedRadius: "50%",
+    rangeBg: "#cce5ff",
+    rangeColor: "#004085",
+  }}
+/>
+```
+
+---
+
+## 📂 Project Structure
+
+```pgsql
+src/
+ ├── components/
+ │   ├── Calendar/
+ │   │   ├── Calendar.css.ts
+ │   │   ├── Calendar.tsx
+ │   │   ├── CalendarBody.tsx
+ │   │   ├── CalendarHeader.tsx
+ │   │   ├── CalendarYearPanel.tsx
+ │   ├── DatePicker/
+ │   │   ├── DatePicker.css.ts
+ │   │   ├── DatePicker.tsx
+ │   ├── RangePicker/
+ │   │   ├── RangePicker.css.ts
+ │   │   ├── RangePicker.tsx
+ ├── hooks/
+ │   ├── useCalendar.ts
+ │   ├── useOutsideClick.ts
+ │   ├── useRangeSelect.ts
+ ├── types/
+ │   └── calendar.type.ts
+ ├── utils/
+ │   ├── date.ts
+ │   ├── format.ts
+ │   ├── helpers.ts
+ │   ├── locale.ts
+ ├── index.ts       # 라이브러리 진입점
+ ├── main.tsx       # 개발/테스트용
+ ├── App.tsx        # 테스트 페이지
+```
+
+---
+
+## 🧪 Development
+
+```bash
+# 개발 서버 실행
+yarn dev
+
+# 빌드
+yarn build
+
+# 빌드 결과 확인 (예: dist/ 폴더)
+```
+
+---
+
+## ✅ TODO (향후 개선)
+
+- 다중 날짜 선택 지원
+- 키보드 내비게이션 강화
+- 다국어 확장 (예: 일본어, 중국어)
+- 테스트 코드 (Vitest, Stotybook)
