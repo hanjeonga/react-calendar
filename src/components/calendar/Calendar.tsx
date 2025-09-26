@@ -2,44 +2,74 @@ import React from "react";
 import { useCalendar } from "../../hooks/useCalendar";
 import { CalendarHeader } from "./CalendarHeader";
 import { CalendarBody } from "./CalendarBody";
-import { LocaleType } from "../../utils/locale";
-import { CalendarTheme } from "../../types/calendar.type";
+import { CalendarCoreProps, RangeValue } from "../../types/calendar.type";
+import * as styles from "./Calendar.css";
 
-interface CalendarProps {
-  value?: Date | null;
-  onSelect: (date: Date) => void;
-  locale?: LocaleType;
-  theme?: CalendarTheme;
-  range?: { startDate: Date | null; endDate: Date | null };
-}
-
-export const Calendar: React.FC<CalendarProps> = ({
+export const Calendar: React.FC<CalendarCoreProps> = ({
+  mode = "single",
   value,
   onSelect,
-  locale = "en",
+  threshold,
+  monthFormat = "en",
   theme,
-  range,
+  locale = "en",
 }) => {
-  const { year, month, setYear, prevMonth, nextMonth } = useCalendar(value);
+  const rangeValue =
+    value && typeof value === "object" && "startDate" in value
+      ? (value as RangeValue)
+      : null;
+  const singleValue = value instanceof Date ? value : null;
+
+  const initialForCalendar = singleValue ?? rangeValue?.startDate ?? new Date();
+  const { year, month, setYear, prevMonth, nextMonth } =
+    useCalendar(initialForCalendar);
+
+  const handleDay = (date: Date) => {
+    if (mode === "single") {
+      onSelect?.(date);
+      return;
+    }
+
+    // range mode
+    if (!rangeValue || (!rangeValue.startDate && !rangeValue.endDate)) {
+      onSelect?.({ startDate: date, endDate: null });
+      return;
+    }
+
+    if (rangeValue.startDate && !rangeValue.endDate) {
+      if (date >= rangeValue.startDate) {
+        onSelect?.({ startDate: rangeValue.startDate, endDate: date });
+      } else {
+        onSelect?.({ startDate: date, endDate: rangeValue.startDate });
+      }
+      return;
+    }
+
+    // both set -> new start
+    onSelect?.({ startDate: date, endDate: null });
+  };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <CalendarHeader
         year={year}
         month={month}
         onYearChange={setYear}
         onPrevMonth={prevMonth}
         onNextMonth={nextMonth}
-        locale={locale}
+        monthFormat={monthFormat}
       />
       <CalendarBody
         year={year}
         month={month}
-        selected={value}
-        onSelect={onSelect}
+        selected={singleValue}
+        range={rangeValue}
+        onDayClick={handleDay}
+        hoverDate={undefined}
+        setHoverDate={undefined}
         locale={locale}
         theme={theme}
-        range={range}
+        threshold={threshold}
       />
     </div>
   );

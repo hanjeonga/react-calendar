@@ -1,33 +1,39 @@
 import React from "react";
+import * as styles from "./Calendar.css";
 import {
   getDaysInMonth,
   getFirstDayOfMonth,
   isSameDay,
+  isWithinRange,
 } from "../../utils/date";
 import { formatDay } from "../../utils/format";
+import { RangeValue, CalendarCoreProps } from "../../types/calendar.type";
 import { CalendarDay } from "./CalendarDay";
-import { LocaleType } from "../../utils/locale";
-import { CalendarTheme } from "../../types/calendar.type";
-import * as styles from "./Calendar.style";
 
-interface BodyProps {
+interface Props {
   year: number;
-  month: number;
+  month: number; // 1..12
   selected?: Date | null;
-  range?: { startDate: Date | null; endDate: Date | null };
-  onSelect: (d: Date) => void;
-  locale?: LocaleType;
-  theme?: CalendarTheme;
+  range?: RangeValue | null;
+  onDayClick: (d: Date) => void;
+  hoverDate?: Date | null;
+  setHoverDate?: (d: Date | null) => void;
+  locale?: "en" | "ko" | "number";
+  theme?: CalendarCoreProps["theme"];
+  threshold?: number;
 }
 
-export const CalendarBody: React.FC<BodyProps> = ({
+export const CalendarBody: React.FC<Props> = ({
   year,
   month,
   selected,
   range,
-  onSelect,
+  onDayClick,
+  hoverDate,
+  setHoverDate,
   locale = "en",
   theme,
+  threshold,
 }) => {
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstDayOfMonth(year, month);
@@ -47,6 +53,24 @@ export const CalendarBody: React.FC<BodyProps> = ({
     weeks.push(current);
   }
 
+  const inHoverRange = (date: Date) => {
+    if (range?.startDate && !range?.endDate && hoverDate) {
+      const s = range.startDate;
+      const e = hoverDate;
+      const start = s < e ? s : e;
+      const end = s < e ? e : s;
+      return date >= start && date <= end;
+    }
+    return false;
+  };
+
+  const isDisabled = (date: Date) => {
+    if (!range?.startDate || threshold == null) return false;
+    const max = new Date(range.startDate);
+    max.setDate(max.getDate() + threshold);
+    return date > max;
+  };
+
   return (
     <div>
       <div className={styles.weekRow}>
@@ -54,35 +78,37 @@ export const CalendarBody: React.FC<BodyProps> = ({
           <div key={i}>{formatDay(i, locale)}</div>
         ))}
       </div>
-      {weeks.map((week, i) => (
-        <div className={styles.dayRow} key={i}>
-          {week.map((date, j) => {
-            if (!date) return <div key={j} />;
-            const isSelected = selected && isSameDay(date, selected);
-            const isInRange =
-              range?.startDate &&
-              range?.endDate &&
-              date > range.startDate &&
-              date < range.endDate;
-            const isRangeStart =
-              range?.startDate && isSameDay(date, range.startDate);
-            const isRangeEnd = range?.endDate && isSameDay(date, range.endDate);
 
-            return (
-              <CalendarDay
-                key={j}
-                day={date.getDate()}
-                isSelected={!!isSelected}
-                isInRange={!!isInRange}
-                isRangeStart={!!isRangeStart}
-                isRangeEnd={!!isRangeEnd}
-                onSelect={() => onSelect(date)}
-                theme={theme}
-              />
-            );
-          })}
-        </div>
-      ))}
+      <div className={styles.daysGrid}>
+        {weeks.flat().map((date, idx) => {
+          if (!date) return <div key={idx} />;
+          const selectedSingle = selected && isSameDay(date, selected);
+          const inRange =
+            range && isWithinRange(date, range.startDate, range.endDate);
+          const hoverIn = inHoverRange(date);
+          const isRangeStart =
+            range?.startDate && isSameDay(date, range.startDate);
+          const isRangeEnd = range?.endDate && isSameDay(date, range.endDate);
+          const disabled = isDisabled(date);
+
+          return (
+            <CalendarDay
+              key={idx}
+              date={date}
+              day={date.getDate()}
+              isSelected={!!selectedSingle}
+              isInRange={!!inRange || !!hoverIn}
+              isRangeStart={!!isRangeStart}
+              isRangeEnd={!!isRangeEnd}
+              onClick={() => !disabled && onDayClick(date)}
+              onMouseEnter={() => setHoverDate && setHoverDate(date)}
+              onMouseLeave={() => setHoverDate && setHoverDate(null)}
+              disabled={disabled}
+              theme={theme}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

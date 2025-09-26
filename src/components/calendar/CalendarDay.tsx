@@ -1,46 +1,72 @@
 import React from "react";
-import * as styles from "./Calendar.style";
+import * as styles from "./Calendar.css";
 import { CalendarTheme } from "../../types/calendar.type";
 
-interface CalendarDayProps {
+interface Props {
+  date: Date;
   day: number;
   isSelected?: boolean;
   isInRange?: boolean;
   isRangeStart?: boolean;
   isRangeEnd?: boolean;
-  onSelect: () => void;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  disabled?: boolean;
   theme?: CalendarTheme;
 }
 
-export const CalendarDay: React.FC<CalendarDayProps> = ({
+export const CalendarDay: React.FC<Props> = ({
+  date,
   day,
   isSelected,
   isInRange,
   isRangeStart,
   isRangeEnd,
-  onSelect,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  disabled,
   theme,
 }) => {
-  let className = styles.day;
+  const style: React.CSSProperties = {};
+  let className = styles.dayCell;
 
-  if (isSelected) className = styles.selectedDay;
-  if (isInRange) className = styles.rangeDay;
-  if (isRangeStart) className = styles.rangeStart;
-  if (isRangeEnd) className = styles.rangeEnd;
-
-  const customStyle: React.CSSProperties = {};
-  if (isSelected) {
-    customStyle.background = theme?.daySelectedBg ?? "#007bff";
-    customStyle.color = theme?.daySelectedColor ?? "#fff";
-    customStyle.borderRadius = theme?.daySelectedRadius ?? "50%";
-  }
   if (isInRange) {
-    customStyle.background = theme?.rangeBg ?? "#cce5ff";
-    customStyle.color = theme?.rangeColor ?? "#000";
+    className = `${className} ${styles.dayRange}`;
+    if (theme?.rangeBg) style.background = theme.rangeBg;
+    if (theme?.rangeColor) style.color = theme.rangeColor;
+  }
+
+  if (isRangeStart) {
+    className = styles.rangeStart;
+    if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
+    if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
+  } else if (isRangeEnd) {
+    className = styles.rangeEnd;
+    if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
+    if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
+  } else if (isSelected) {
+    className = `${className} ${styles.daySelected}`;
+    if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
+    if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
+    if (theme?.daySelectedRadius) style.borderRadius = theme.daySelectedRadius;
+  }
+
+  if (disabled) {
+    style.opacity = 0.45;
+    style.cursor = "not-allowed";
   }
 
   return (
-    <div className={className} style={customStyle} onClick={onSelect}>
+    <div
+      className={className}
+      style={style}
+      onClick={() => !disabled && onClick && onClick()}
+      onMouseEnter={() => onMouseEnter && onMouseEnter()}
+      onMouseLeave={() => onMouseLeave && onMouseLeave()}
+      aria-disabled={disabled}
+    >
       {day}
     </div>
   );

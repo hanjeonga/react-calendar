@@ -1,20 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, RefObject } from "react";
 
-export function useOutsideClick<T extends HTMLElement>(
-  ref: React.RefObject<T | null>, // <-- 수정
-  handler: (event: MouseEvent) => void
-) {
+/**
+ * Generic hook: ref can be RefObject<T | null>
+ */
+export const useOutsideClick = <
+  T extends HTMLElement | null = HTMLElement | null
+>(
+  ref: RefObject<T>,
+  callback: () => void
+) => {
   useEffect(() => {
-    const listener = (event: MouseEvent) => {
-      if (!ref.current || ref.current.contains(event.target as Node)) {
-        return;
-      }
-      handler(event);
-    };
-
-    document.addEventListener("mousedown", listener);
+    function handler(e: MouseEvent | TouchEvent) {
+      const target = e.target as Node | null;
+      if (!ref || !ref.current) return;
+      if (!target) return;
+      if (ref.current.contains(target)) return;
+      callback();
+    }
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
     return () => {
-      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
     };
-  }, [ref, handler]);
-}
+  }, [ref, callback]);
+};

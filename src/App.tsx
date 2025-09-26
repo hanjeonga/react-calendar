@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import { DatePicker } from "./components/datePicker/DatePicker";
+import { RangePicker } from "./components/rangePicker/RangePicker";
+import { formatDate } from "./utils/format";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [single, setSingle] = useState<Date | null>(new Date());
+  const [range, setRange] = useState<{
+    startDate: Date | null;
+    endDate: Date | null;
+  }>({
+    startDate: null,
+    endDate: null,
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div
+      style={{
+        padding: 24,
+        fontFamily:
+          "system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial",
+      }}
+    >
+      <h1>Calendar Library Demo</h1>
 
-export default App
+      <section style={{ marginBottom: 28 }}>
+        <h2>DatePicker</h2>
+        <DatePicker
+          value={single}
+          onChange={(d) => setSingle(d)}
+          dateFormat="YYYY.MM.DD"
+          displayMode="dropdown"
+          monthFormat="en"
+        />
+        <div style={{ marginTop: 8 }}>
+          Selected: {single ? formatDate(single, "YYYY.MM.DD") : "—"}
+        </div>
+      </section>
+
+      <section>
+        <h2>RangePicker</h2>
+        <RangePicker
+          startDate={range.startDate}
+          endDate={range.endDate}
+          onChange={(r) => setRange(r)}
+          separator="~"
+          displayMode="dropdown"
+          monthFormat="en"
+        />
+        <div style={{ marginTop: 8 }}>
+          Range:{" "}
+          {range.startDate ? formatDate(range.startDate, "YYYY.MM.DD") : "--"}{" "}
+          {range.endDate ? ` ~ ${formatDate(range.endDate, "YYYY.MM.DD")}` : ""}
+        </div>
+      </section>
+    </div>
+  );
+}

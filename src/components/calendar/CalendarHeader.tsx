@@ -1,53 +1,94 @@
 import React, { useState } from "react";
+import * as styles from "./Calendar.css";
 import { formatMonth } from "../../utils/format";
-import { CalendarYearPanel } from "./CalendarYearPanel";
 import { LocaleType } from "../../utils/locale";
-import * as styles from "./Calendar.style";
+import { makeYearRange } from "../../utils/helpers";
 
-interface HeaderProps {
+interface Props {
   year: number;
-  month: number;
+  month: number; // 1..12
   onYearChange: (y: number) => void;
   onPrevMonth: () => void;
   onNextMonth: () => void;
-  locale?: LocaleType;
+  monthFormat?: LocaleType;
 }
 
-export const CalendarHeader: React.FC<HeaderProps> = ({
+export const CalendarHeader: React.FC<Props> = ({
   year,
   month,
   onYearChange,
   onPrevMonth,
   onNextMonth,
-  locale = "en",
+  monthFormat = "en",
 }) => {
-  const [showYearPanel, setShowYearPanel] = useState(false);
+  const [openYears, setOpenYears] = useState<boolean>(false);
+  const years = makeYearRange(year, 100);
 
   return (
     <div className={styles.header}>
-      {showYearPanel ? (
-        <CalendarYearPanel
-          currentYear={year}
-          onSelect={(y) => {
-            onYearChange(y);
-            setShowYearPanel(false);
-          }}
-        />
-      ) : (
-        <>
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => setShowYearPanel(true)}
+      <div
+        style={{
+          display: "flex",
+          gap: 8,
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <button
+          type="button"
+          className={styles.yearButton}
+          onClick={() => setOpenYears((v) => !v)}
+          aria-expanded={openYears}
+          aria-controls="year-panel"
+          aria-haspopup="listbox"
+        >
+          {year}
+        </button>
+
+        {openYears && (
+          <div
+            id="year-panel"
+            className={styles.yearPanel}
+            role="listbox"
+            aria-label="Select year"
+            onMouseLeave={() => setOpenYears(false)}
           >
-            {year}
-          </span>
-          <div>
-            <button onClick={onPrevMonth}>◀</button>
-            <span>{formatMonth(month, locale)}</span>
-            <button onClick={onNextMonth}>▶</button>
+            {years.map((y) => (
+              <div
+                key={y}
+                role="option"
+                aria-selected={y === year}
+                className={y === year ? styles.yearActive : styles.yearItem}
+                onClick={() => {
+                  onYearChange(y);
+                  setOpenYears(false);
+                }}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    onYearChange(y);
+                    setOpenYears(false);
+                  }
+                }}
+              >
+                {y}
+              </div>
+            ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <button type="button" onClick={onPrevMonth} aria-label="Previous month">
+          ◀
+        </button>
+        <div style={{ minWidth: 140, textAlign: "center" }}>
+          {formatMonth(month - 1, monthFormat)} {year}
+        </div>
+        <button type="button" onClick={onNextMonth} aria-label="Next month">
+          ▶
+        </button>
+      </div>
     </div>
   );
 };

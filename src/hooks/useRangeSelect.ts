@@ -1,30 +1,38 @@
 import { useState } from "react";
+import { RangeValue } from "../types/calendar.type";
+import { daysBetween } from "../utils/date";
 
-export function useRangeSelect(
-  onChange?: (range: { startDate: Date; endDate: Date }) => void,
-  threshold?: number
-) {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+/**
+ * Manages temporary range selection + hover state
+ */
+export const useRangeSelect = (initial?: RangeValue) => {
+  const init: RangeValue = initial ?? { startDate: null, endDate: null };
+  const [range, setRange] = useState<RangeValue>(init);
+  const [hoverDate, setHoverDate] = useState<Date | null>(null);
 
-  const handleSelect = (date: Date) => {
-    if (!startDate || (startDate && endDate)) {
-      setStartDate(date);
-      setEndDate(null);
-      onChange?.({ startDate: date, endDate: date });
-    } else {
-      if (date < startDate) return;
+  const onSelect = (date: Date, threshold?: number) => {
+    // if no start or already both set -> start new
+    if (!range.startDate || (range.startDate && range.endDate)) {
+      setRange({ startDate: date, endDate: null });
+      return;
+    }
 
-      if (threshold) {
-        const maxEnd = new Date(startDate);
-        maxEnd.setDate(maxEnd.getDate() + threshold);
-        if (date > maxEnd) return;
+    // start exists, end not set -> set end (or swap)
+    if (range.startDate && !range.endDate) {
+      if (date < range.startDate) {
+        setRange({ startDate: date, endDate: range.startDate });
+      } else {
+        if (threshold && daysBetween(range.startDate, date) > threshold) {
+          // exceed threshold -> ignore or clamp, here ignore selection
+          return;
+        }
+        setRange({ startDate: range.startDate, endDate: date });
       }
-
-      setEndDate(date);
-      onChange?.({ startDate, endDate: date });
     }
   };
 
-  return { startDate, endDate, handleSelect };
-}
+  const reset = () => setRange({ startDate: null, endDate: null });
+  const set = (r: RangeValue) => setRange(r);
+
+  return { range, onSelect, reset, setRange: set, hoverDate, setHoverDate };
+};
