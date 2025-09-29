@@ -1,7 +1,7 @@
 {
-  "name": "@hja/react-calendar",
+  "name": "react-calendar-byhja",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A customizable React calendar component by hja.",
   "type": "module",
   "main": "./dist/react-calendar.umd.js",
@@ -9,13 +9,15 @@
   "types": "./dist/src/index.d.ts",
   "style": "./dist/react-calendar.css",
   "files": [
-    "dist"
+    "dist",
+    "docs"
   ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "typedoc"
   },
   "exports": {
     ".": {
@@ -41,6 +43,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.4.0",
+    "typedoc": "^0.28.13",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0",
     "vite": "^7.1.7",

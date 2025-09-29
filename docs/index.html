@@ -1,0 +1,117 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>react-calendar-byhja - v0.0.1</title><meta name="description" content="Documentation for react-calendar-byhja"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">react-calendar-byhja - v0.0.1</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>react-calendar-byhja - v0.0.1</h1></div><div class="tsd-panel tsd-typography"><h1 id="📅-react-calendar-library" class="tsd-anchor-link">📅 React Calendar Library<a href="#📅-react-calendar-library" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><strong>Vite + React + TypeScript + vanilla-extract</strong> 기반으로 제작된 <strong>재사용 가능한 캘린더 라이브러리</strong>입니다.<br>
+날짜 단일 선택(DatePicker)과 날짜 범위 선택(RangePicker)을 지원하며, 다양한 커스터마이징이 가능합니다.</p>
+<hr>
+<h2 id="🚀-features" class="tsd-anchor-link">🚀 Features<a href="#🚀-features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>두 가지 모드 지원</strong>
+<ul>
+<li>✅ <code>DatePicker</code> → 단일 날짜 선택</li>
+<li>✅ <code>RangePicker</code> → 날짜 범위 선택 (시작일 ~ 종료일)</li>
+</ul>
+</li>
+<li><strong>출력 방식 선택</strong>
+<ul>
+<li>드롭다운(default)</li>
+<li>모달</li>
+</ul>
+</li>
+<li><strong>범위 선택 고급 기능</strong>
+<ul>
+<li>시작일 기준 <code>threshold</code> (종료일 최대 선택 가능일 제한)</li>
+<li>시작일과 종료일 구간은 다른 배경색/스타일 적용 가능</li>
+<li>시작일 클릭 후 <strong>호버 시 날짜 구간 하이라이트</strong></li>
+</ul>
+</li>
+<li><strong>다국어 지원</strong>
+<ul>
+<li>영어(en, default), 한국어(ko), 숫자(number)</li>
+</ul>
+</li>
+<li><strong>포맷 커스터마이징</strong>
+<ul>
+<li>날짜 표시 형식 기본값: <code>YYYY.MM.DD</code></li>
+<li><code>props.format</code> 으로 원하는 포맷 지정 가능</li>
+</ul>
+</li>
+<li><strong>커스텀 아이콘 지원</strong>
+<ul>
+<li>기본값: <code>react-icons/ai</code>의 달력 아이콘</li>
+<li>원하는 SVG 컴포넌트 교체 가능</li>
+</ul>
+</li>
+<li><strong>접근성(ARIA) 지원</strong>
+<ul>
+<li>키보드 접근 및 스크린리더 친화적</li>
+</ul>
+</li>
+<li><strong>스타일링</strong>
+<ul>
+<li><code>vanilla-extract</code> 기반</li>
+<li><code>theme</code> prop 으로 선택 색상/배경/라운드값 커스터마이징 가능</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="📦-installation" class="tsd-anchor-link">📦 Installation<a href="#📦-installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="bash"><span class="hl-0"># 설치</span><br/><span class="hl-1">yarn</span><span class="hl-2"> </span><span class="hl-3">add</span><span class="hl-2"> </span><span class="hl-3">your-calendar-lib</span><br/><span class="hl-0"># 또는</span><br/><span class="hl-1">npm</span><span class="hl-2"> </span><span class="hl-3">install</span><span class="hl-2"> </span><span class="hl-3">your-calendar-lib</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="🛠-usage" class="tsd-anchor-link">🛠 Usage<a href="#🛠-usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>DatePicker (단일 날짜 선택)</strong></li>
+</ul>
+<pre><code class="javascript"><span class="hl-4">import</span><span class="hl-2"> { </span><span class="hl-5">DatePicker</span><span class="hl-2"> } </span><span class="hl-4">from</span><span class="hl-2"> </span><span class="hl-3">&quot;your-calendar-lib&quot;</span><span class="hl-2">;</span><br/><br/><span class="hl-4">export</span><span class="hl-2"> </span><span class="hl-4">default</span><span class="hl-2"> </span><span class="hl-6">function</span><span class="hl-2"> </span><span class="hl-1">App</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-4">return</span><span class="hl-2"> (</span><br/><span class="hl-2">    </span><span class="hl-7">&lt;</span><span class="hl-8">DatePicker</span><br/><span class="hl-2">      </span><span class="hl-9">onChange</span><span class="hl-2">=</span><span class="hl-6">{</span><span class="hl-10">(</span><span class="hl-5">date</span><span class="hl-10">) </span><span class="hl-6">=&gt;</span><span class="hl-10"> </span><span class="hl-5">console</span><span class="hl-10">.</span><span class="hl-1">log</span><span class="hl-10">(</span><span class="hl-3">&quot;선택한 날짜:&quot;</span><span class="hl-10">, </span><span class="hl-5">date</span><span class="hl-10">)</span><span class="hl-6">}</span><br/><span class="hl-2">      </span><span class="hl-9">displayMode</span><span class="hl-2">=</span><span class="hl-3">&quot;dropdown&quot;</span><span class="hl-2"> </span><span class="hl-0">// 또는 &quot;modal&quot;</span><br/><span class="hl-2">      </span><span class="hl-9">monthFormat</span><span class="hl-2">=</span><span class="hl-3">&quot;ko&quot;</span><span class="hl-2"> </span><span class="hl-0">// &quot;en&quot; | &quot;ko&quot; | &quot;number&quot;</span><br/><span class="hl-2">      </span><span class="hl-9">format</span><span class="hl-2">=</span><span class="hl-3">&quot;YYYY/MM/DD&quot;</span><br/><span class="hl-2">    </span><span class="hl-7">/&gt;</span><br/><span class="hl-2">  );</span><br/><span class="hl-2">}</span>
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<ul>
+<li><strong>RangePicker (날짜 범위 선택)</strong></li>
+</ul>
+<pre><code class="javascript"><span class="hl-4">import</span><span class="hl-2"> { </span><span class="hl-5">RangePicker</span><span class="hl-2"> } </span><span class="hl-4">from</span><span class="hl-2"> </span><span class="hl-3">&quot;your-calendar-lib&quot;</span><span class="hl-2">;</span><br/><br/><span class="hl-4">export</span><span class="hl-2"> </span><span class="hl-4">default</span><span class="hl-2"> </span><span class="hl-6">function</span><span class="hl-2"> </span><span class="hl-1">App</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-4">return</span><span class="hl-2"> (</span><br/><span class="hl-2">    </span><span class="hl-7">&lt;</span><span class="hl-8">RangePicker</span><br/><span class="hl-2">      </span><span class="hl-9">onChange</span><span class="hl-2">=</span><span class="hl-6">{</span><span class="hl-10">({ </span><span class="hl-5">startDate</span><span class="hl-10">, </span><span class="hl-5">endDate</span><span class="hl-10"> }) </span><span class="hl-6">=&gt;</span><br/><span class="hl-10">        </span><span class="hl-5">console</span><span class="hl-10">.</span><span class="hl-1">log</span><span class="hl-10">(</span><span class="hl-3">&quot;선택한 구간:&quot;</span><span class="hl-10">, </span><span class="hl-5">startDate</span><span class="hl-10">, </span><span class="hl-5">endDate</span><span class="hl-10">)</span><br/><span class="hl-10">      </span><span class="hl-6">}</span><br/><span class="hl-2">      </span><span class="hl-9">separator</span><span class="hl-2">=</span><span class="hl-3">&quot;~&quot;</span><span class="hl-2"> </span><span class="hl-0">// 또는 &quot;-&quot;</span><br/><span class="hl-2">      </span><span class="hl-9">displayMode</span><span class="hl-2">=</span><span class="hl-3">&quot;modal&quot;</span><br/><span class="hl-2">      </span><span class="hl-9">monthFormat</span><span class="hl-2">=</span><span class="hl-3">&quot;en&quot;</span><br/><span class="hl-2">      </span><span class="hl-9">threshold</span><span class="hl-2">=</span><span class="hl-6">{</span><span class="hl-11">30</span><span class="hl-6">}</span><span class="hl-2"> </span><span class="hl-0">// 시작일 기준 최대 30일까지만 선택 가능</span><br/><span class="hl-2">    </span><span class="hl-7">/&gt;</span><br/><span class="hl-2">  );</span><br/><span class="hl-2">}</span>
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<h2 id="🎨-theme-customization" class="tsd-anchor-link">🎨 Theme Customization<a href="#🎨-theme-customization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>theme prop을 통해 선택된 날짜 및 구간의 스타일을 변경할 수 있습니다.</p>
+<pre><code class="javascript"><span class="hl-7">&lt;</span><span class="hl-8">DatePicker</span><br/><span class="hl-2">  </span><span class="hl-9">theme</span><span class="hl-2">=</span><span class="hl-6">{</span><span class="hl-10">{</span><br/><span class="hl-10">    </span><span class="hl-5">daySelectedBg:</span><span class="hl-10"> </span><span class="hl-3">&quot;#007bff&quot;</span><span class="hl-10">,</span><br/><span class="hl-10">    </span><span class="hl-5">daySelectedColor:</span><span class="hl-10"> </span><span class="hl-3">&quot;#fff&quot;</span><span class="hl-10">,</span><br/><span class="hl-10">    </span><span class="hl-5">daySelectedRadius:</span><span class="hl-10"> </span><span class="hl-3">&quot;50%&quot;</span><span class="hl-10">,</span><br/><span class="hl-10">    </span><span class="hl-5">rangeBg:</span><span class="hl-10"> </span><span class="hl-3">&quot;#cce5ff&quot;</span><span class="hl-10">,</span><br/><span class="hl-10">    </span><span class="hl-5">rangeColor:</span><span class="hl-10"> </span><span class="hl-3">&quot;#004085&quot;</span><span class="hl-10">,</span><br/><span class="hl-10">  }</span><span class="hl-6">}</span><br/><span class="hl-7">/&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<h2 id="📂-project-structure" class="tsd-anchor-link">📂 Project Structure<a href="#📂-project-structure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="pgsql">src/
+ ├── components/
+ │   ├── Calendar/
+ │   │   ├── Calendar.css.ts
+ │   │   ├── Calendar.tsx
+ │   │   ├── CalendarBody.tsx
+ │   │   ├── CalendarHeader.tsx
+ │   │   ├── CalendarYearPanel.tsx
+ │   ├── DatePicker/
+ │   │   ├── DatePicker.css.ts
+ │   │   ├── DatePicker.tsx
+ │   ├── RangePicker/
+ │   │   ├── RangePicker.css.ts
+ │   │   ├── RangePicker.tsx
+ ├── hooks/
+ │   ├── useCalendar.ts
+ │   ├── useOutsideClick.ts
+ │   ├── useRangeSelect.ts
+ ├── types/
+ │   └── calendar.type.ts
+ ├── utils/
+ │   ├── date.ts
+ │   ├── format.ts
+ │   ├── helpers.ts
+ │   ├── locale.ts
+ ├── index.ts       # 라이브러리 진입점
+ ├── main.tsx       # 개발/테스트용
+ ├── App.tsx        # 테스트 페이지
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<h2 id="🧪-development" class="tsd-anchor-link">🧪 Development<a href="#🧪-development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="bash"><span class="hl-0"># 개발 서버 실행</span><br/><span class="hl-1">yarn</span><span class="hl-2"> </span><span class="hl-3">dev</span><br/><br/><span class="hl-0"># 빌드</span><br/><span class="hl-1">yarn</span><span class="hl-2"> </span><span class="hl-3">build</span><br/><br/><span class="hl-0"># 빌드 결과 확인 (예: dist/ 폴더)</span>
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<h2 id="✅-todo-향후-개선" class="tsd-anchor-link">✅ TODO (향후 개선)<a href="#✅-todo-향후-개선" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>다중 날짜 선택 지원</li>
+<li>키보드 내비게이션 강화</li>
+<li>다국어 확장 (예: 일본어, 중국어)</li>
+<li>테스트 코드 (Vitest, Stotybook)</li>
+</ul>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#📅-react-calendar-library"><span>📅 <wbr/>React <wbr/>Calendar <wbr/>Library</span></a><ul><li><a href="#🚀-features"><span>🚀 <wbr/>Features</span></a></li><li><a href="#📦-installation"><span>📦 <wbr/>Installation</span></a></li><li><a href="#🛠-usage"><span>🛠 <wbr/>Usage</span></a></li><li><a href="#🎨-theme-customization"><span>🎨 <wbr/>Theme <wbr/>Customization</span></a></li><li><a href="#📂-project-structure"><span>📂 <wbr/>Project <wbr/>Structure</span></a></li><li><a href="#🧪-development"><span>🧪 <wbr/>Development</span></a></li><li><a href="#✅-todo-향후-개선"><span>✅ <wbr/>TODO (향후 개선)</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">react-calendar-byhja - v0.0.1</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
