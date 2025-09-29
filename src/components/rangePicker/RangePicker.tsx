@@ -24,16 +24,19 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   const ref = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState(false);
 
-  const { range, onSelect, reset, setRange, hoverDate, setHoverDate } =
-    useRangeSelect({
-      startDate: startDate ?? null,
-      endDate: endDate ?? null,
-    } as RangeValue);
+  const { range, onSelect, setRange } = useRangeSelect({
+    startDate: startDate ?? null,
+    endDate: endDate ?? null,
+  } as RangeValue);
 
   useOutsideClick(ref, () => {
-    if (displayMode === "dropdown") setOpen(false);
+    if (displayMode === "dropdown") {
+      setRange({ startDate: null, endDate: null });
+      setOpen(false);
+    }
   });
 
+  // props 변경 시 동기화 (확인 누른 이후 반영용)
   useEffect(() => {
     setRange({ startDate: startDate ?? null, endDate: endDate ?? null });
   }, [startDate, endDate]);
@@ -44,7 +47,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   };
 
   const renderIcon = () => {
-    if (!customIcon) return <FaRegCalendarAlt />;
+    if (!customIcon) return <FaRegCalendarAlt className={styles.iconSize} />;
     if (typeof customIcon === "string")
       return (
         <img
@@ -70,7 +73,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
           <input
             className={styles.input}
             readOnly
-            placeholder="Start"
+            placeholder="Start Date"
             aria-label="Start date"
             value={
               range.startDate ? formatDate(range.startDate, dateFormat) : ""
@@ -80,7 +83,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
           <input
             className={styles.input}
             readOnly
-            placeholder="End"
+            placeholder="End Date"
             aria-label="End date"
             value={range.endDate ? formatDate(range.endDate, dateFormat) : ""}
           />
@@ -88,13 +91,13 @@ export const RangePicker: React.FC<RangePickerProps> = ({
         </div>
       )}
 
+      {/* Dropdown 모드 */}
       {open && displayMode === "dropdown" && (
         <div className={styles.dropdown}>
           <Calendar
             mode="range"
             value={range}
             onSelect={(v) => {
-              // calendar may emit Date or RangeValue
               if (!v) return;
               if (v instanceof Date) onSelect(v, threshold);
               else setRange(v);
@@ -103,14 +106,11 @@ export const RangePicker: React.FC<RangePickerProps> = ({
             theme={theme}
             locale={locale}
           />
-          <div className={styles.actions}>
+          <div className={styles.ButtonWrapper}>
             <button
               className={styles.cancelBtn}
               onClick={() => {
-                setRange({
-                  startDate: startDate ?? null,
-                  endDate: endDate ?? null,
-                });
+                setRange({ startDate: null, endDate: null });
                 setOpen(false);
               }}
             >
@@ -123,8 +123,15 @@ export const RangePicker: React.FC<RangePickerProps> = ({
         </div>
       )}
 
+      {/* Modal 모드 */}
       {open && displayMode === "modal" && (
-        <div className={styles.modalOverlay} onClick={() => setOpen(false)}>
+        <div
+          className={styles.modalOverlay}
+          onClick={() => {
+            setRange({ startDate: null, endDate: null });
+            setOpen(false);
+          }}
+        >
           <div
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
@@ -141,14 +148,11 @@ export const RangePicker: React.FC<RangePickerProps> = ({
               theme={theme}
               locale={locale}
             />
-            <div className={styles.actions}>
+            <div className={styles.ButtonWrapper}>
               <button
                 className={styles.cancelBtn}
                 onClick={() => {
-                  setRange({
-                    startDate: startDate ?? null,
-                    endDate: endDate ?? null,
-                  });
+                  setRange({ startDate: null, endDate: null });
                   setOpen(false);
                 }}
               >

@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
+// Calendar container
 export const wrapper = style({
   background: "#fff",
   border: "1px solid #e6e6e6",
@@ -9,6 +10,7 @@ export const wrapper = style({
   boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
 });
 
+// Calendar header (Year and Month selectors)
 export const header = style({
   display: "flex",
   flexDirection: "column",
@@ -100,39 +102,42 @@ export const monthText = style({
   fontWeight: 600,
 });
 
+// Calendar body (Weekdays and Days)
 export const weekRow = style({
   display: "grid",
   gridTemplateColumns: "repeat(7, 1fr)",
   textAlign: "center",
-  fontSize: 12,
-  color: "#666",
-  marginBottom: 6,
+  color: "#555",
+  fontSize: 14,
+  fontWeight: 600,
+  marginBottom: 12,
 });
 
 export const daysGrid = style({
   display: "grid",
   gridTemplateColumns: "repeat(7, 1fr)",
-  gap: 6,
+  gap: 8,
 });
 
 export const dayCell = style({
+  cursor: "pointer",
   width: 36,
   height: 36,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: 6,
-  cursor: "pointer",
+  borderRadius: "50%",
   userSelect: "none",
-  selectors: { "&:hover": { background: "#f3f3f3" } },
+  selectors: { "&:hover": { background: "#ededed" } },
 });
 
 export const daySelected = style({
+  borderRadius: "50%",
   background: "#007bff",
   color: "#fff",
-  borderRadius: "50%",
 });
 
+// Day in range (between start and end)
 export const dayRange = style({
   background: "rgba(0,123,255,0.08)",
   color: "#000",
@@ -141,14 +146,18 @@ export const dayRange = style({
 
 export const rangeStart = style({
   background: "#007bff",
-  color: "#fff",
   borderRadius: "50% 0 0 50%",
+  color: "#fff",
+  textAlign: "center",
+  paddingTop: 8,
 });
 
 export const rangeEnd = style({
   background: "#007bff",
-  color: "#fff",
   borderRadius: "0 50% 50% 0",
+  color: "#fff",
+  textAlign: "center",
+  paddingTop: 8,
 });
 
 export const dayHoverInRange = style({
