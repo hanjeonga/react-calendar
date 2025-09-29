@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Calendar.css";
+import "./Calendar.css";
 import { CalendarTheme } from "../../types/calendar.type";
 
 interface Props {
@@ -30,24 +30,24 @@ export const CalendarDay: React.FC<Props> = ({
   theme,
 }) => {
   const style: React.CSSProperties = {};
-  let className = styles.dayCell;
+  let className = "dayCell";
 
   if (isInRange) {
-    className = `${className} ${styles.dayRange}`;
+    className = `${className} ${"dayRange"}`;
     if (theme?.rangeBg) style.background = theme.rangeBg;
     if (theme?.rangeColor) style.color = theme.rangeColor;
   }
 
   if (isRangeStart) {
-    className = styles.rangeStart;
+    className = "rangeStart";
     if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
     if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
   } else if (isRangeEnd) {
-    className = styles.rangeEnd;
+    className = "rangeEnd";
     if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
     if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
   } else if (isSelected) {
-    className = `${className} ${styles.daySelected}`;
+    className = `${className} ${"daySelected"}`;
     if (theme?.daySelectedBg) style.background = theme.daySelectedBg;
     if (theme?.daySelectedColor) style.color = theme.daySelectedColor;
     if (theme?.daySelectedRadius) style.borderRadius = theme.daySelectedRadius;

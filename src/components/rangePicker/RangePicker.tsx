@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as styles from "./RangePicker.css";
+import "./RangePicker.css";
 import { RangePickerProps, RangeValue } from "../../types/calendar.type";
 import { Calendar } from "../calendar/Calendar";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
@@ -47,7 +47,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   };
 
   const renderIcon = () => {
-    if (!customIcon) return <FaRegCalendarAlt className={styles.iconSize} />;
+    if (!customIcon) return <FaRegCalendarAlt className="iconSize" />;
     if (typeof customIcon === "string")
       return (
         <img
@@ -60,18 +60,18 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   };
 
   return (
-    <div ref={ref} className={styles.container}>
+    <div ref={ref} className="container">
       {customInput ? (
         <div onClick={() => setOpen((v) => !v)}>{customInput}</div>
       ) : (
         <div
-          className={styles.inputBox}
+          className="inputBox"
           role="group"
           aria-label="Date range"
           onClick={() => setOpen((v) => !v)}
         >
           <input
-            className={styles.input}
+            className="input"
             readOnly
             placeholder="Start Date"
             aria-label="Start date"
@@ -79,21 +79,21 @@ export const RangePicker: React.FC<RangePickerProps> = ({
               range.startDate ? formatDate(range.startDate, dateFormat) : ""
             }
           />
-          <div className={styles.separator}>{separator}</div>
+          <div className="separator">{separator}</div>
           <input
-            className={styles.input}
+            className="input"
             readOnly
             placeholder="End Date"
             aria-label="End date"
             value={range.endDate ? formatDate(range.endDate, dateFormat) : ""}
           />
-          <div className={styles.iconWrap}>{renderIcon()}</div>
+          <div className="iconWrap">{renderIcon()}</div>
         </div>
       )}
 
       {/* Dropdown 모드 */}
       {open && displayMode === "dropdown" && (
-        <div className={styles.dropdown}>
+        <div className="dropdown">
           <Calendar
             mode="range"
             value={range}
@@ -106,9 +106,9 @@ export const RangePicker: React.FC<RangePickerProps> = ({
             theme={theme}
             locale={locale}
           />
-          <div className={styles.ButtonWrapper}>
+          <div className="ButtonWrapper">
             <button
-              className={styles.cancelBtn}
+              className="cancelBtn"
               onClick={() => {
                 setRange({ startDate: null, endDate: null });
                 setOpen(false);
@@ -116,7 +116,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
             >
               취소
             </button>
-            <button className={styles.confirmBtn} onClick={handleConfirm}>
+            <button className="confirmBtn" onClick={handleConfirm}>
               확인
             </button>
           </div>
@@ -126,16 +126,13 @@ export const RangePicker: React.FC<RangePickerProps> = ({
       {/* Modal 모드 */}
       {open && displayMode === "modal" && (
         <div
-          className={styles.modalOverlay}
+          className="modalOverlay"
           onClick={() => {
             setRange({ startDate: null, endDate: null });
             setOpen(false);
           }}
         >
-          <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <Calendar
               mode="range"
               value={range}
@@ -148,9 +145,9 @@ export const RangePicker: React.FC<RangePickerProps> = ({
               theme={theme}
               locale={locale}
             />
-            <div className={styles.ButtonWrapper}>
+            <div className="ButtonWrapper">
               <button
-                className={styles.cancelBtn}
+                className="cancelBtn"
                 onClick={() => {
                   setRange({ startDate: null, endDate: null });
                   setOpen(false);
@@ -158,7 +155,7 @@ export const RangePicker: React.FC<RangePickerProps> = ({
               >
                 취소
               </button>
-              <button className={styles.confirmBtn} onClick={handleConfirm}>
+              <button className="confirmBtn" onClick={handleConfirm}>
                 확인
               </button>
             </div>

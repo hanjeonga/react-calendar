@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as styles from "./Calendar.css";
+import "./Calendar.css";
 import { formatMonth } from "../../utils/format";
 import { LocaleType } from "../../utils/locale";
 import { makeYearRange } from "../../utils/helpers";
@@ -26,11 +26,11 @@ export const CalendarHeader: React.FC<Props> = ({
   const years = makeYearRange(year, 100);
 
   return (
-    <div className={styles.header}>
-      <div className={styles.yearContainer}>
+    <div className="header">
+      <div className="yearContainer">
         <button
           type="button"
-          className={styles.yearButton}
+          className="yearButton"
           onClick={() => setOpenYears((v) => !v)}
           aria-expanded={openYears}
           aria-controls="year-panel"
@@ -42,7 +42,7 @@ export const CalendarHeader: React.FC<Props> = ({
         {openYears && (
           <div
             id="year-panel"
-            className={styles.yearPanel}
+            className="yearPanel"
             role="listbox"
             aria-label="Select year"
             onMouseLeave={() => setOpenYears(false)}
@@ -52,7 +52,7 @@ export const CalendarHeader: React.FC<Props> = ({
                 key={y}
                 role="option"
                 aria-selected={y === year}
-                className={y === year ? styles.yearActive : styles.yearItem}
+                className={y === year ? "yearActive" : "yearItem"}
                 onClick={() => {
                   onYearChange(y);
                   setOpenYears(false);
@@ -72,25 +72,25 @@ export const CalendarHeader: React.FC<Props> = ({
         )}
       </div>
 
-      <div className={styles.monthContainer}>
+      <div className="monthContainer">
         <button
-          className={styles.monthButton}
+          className="monthButton"
           type="button"
           onClick={onPrevMonth}
           aria-label="Previous month"
         >
-          <IoIosArrowBack className={styles.monthButtonIcon} />
+          <IoIosArrowBack className="monthButtonIcon" />
         </button>
-        <div className={styles.monthText}>
+        <div className="monthText">
           {formatMonth(month - 1, monthFormat)} {year}
         </div>
         <button
-          className={styles.monthButton}
+          className="monthButton"
           type="button"
           onClick={onNextMonth}
           aria-label="Next month"
         >
-          <IoIosArrowForward className={styles.monthButtonIcon} />
+          <IoIosArrowForward className="monthButtonIcon" />
         </button>
       </div>
     </div>

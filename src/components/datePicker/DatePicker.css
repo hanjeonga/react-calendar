@@ -1,0 +1,45 @@
+button {
+  all: unset;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: 260px;
+  font-family: inherit;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+.iconSize {
+  font-size: 18px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 999;
+}
