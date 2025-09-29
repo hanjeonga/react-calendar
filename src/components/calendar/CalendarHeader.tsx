@@ -3,6 +3,7 @@ import * as styles from "./Calendar.css";
 import { formatMonth } from "../../utils/format";
 import { LocaleType } from "../../utils/locale";
 import { makeYearRange } from "../../utils/helpers";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface Props {
   year: number;
@@ -26,14 +27,7 @@ export const CalendarHeader: React.FC<Props> = ({
 
   return (
     <div className={styles.header}>
-      <div
-        style={{
-          display: "flex",
-          gap: 8,
-          alignItems: "center",
-          position: "relative",
-        }}
-      >
+      <div className={styles.yearContainer}>
         <button
           type="button"
           className={styles.yearButton}
@@ -78,15 +72,25 @@ export const CalendarHeader: React.FC<Props> = ({
         )}
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <button type="button" onClick={onPrevMonth} aria-label="Previous month">
-          ◀
+      <div className={styles.monthContainer}>
+        <button
+          className={styles.monthButton}
+          type="button"
+          onClick={onPrevMonth}
+          aria-label="Previous month"
+        >
+          <IoIosArrowBack className={styles.monthButtonIcon} />
         </button>
-        <div style={{ minWidth: 140, textAlign: "center" }}>
+        <div className={styles.monthText}>
           {formatMonth(month - 1, monthFormat)} {year}
         </div>
-        <button type="button" onClick={onNextMonth} aria-label="Next month">
-          ▶
+        <button
+          className={styles.monthButton}
+          type="button"
+          onClick={onNextMonth}
+          aria-label="Next month"
+        >
+          <IoIosArrowForward className={styles.monthButtonIcon} />
         </button>
       </div>
     </div>
