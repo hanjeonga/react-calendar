@@ -5,48 +5,53 @@ export const container = style({
   display: "inline-block",
 });
 
+// Display two input boxes side by side with a separator
 export const inputBox = style({
-  display: "flex",
-  alignItems: "center",
-  gap: 8,
-  border: "1px solid #ddd",
-  borderRadius: 8,
-  padding: "6px 10px",
-  background: "#fff",
   cursor: "pointer",
   minWidth: 300,
+  border: "1px solid #ddd",
+  borderRadius: 8,
+  background: "#fff",
+  padding: "10px 12px",
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
 });
 
 export const input = style({
-  border: "none",
-  outline: "none",
-  background: "transparent",
   width: 110,
+  border: "none",
+  background: "transparent",
+  outline: "none",
   textAlign: "center",
+  fontSize: 16,
 });
 
 export const separator = style({
-  color: "#666",
-  margin: "0 6px",
+  color: "#444",
+  fontSize: 16,
 });
 
 export const iconWrap = style({
-  marginLeft: 8,
   display: "inline-flex",
+  marginLeft: 8,
+});
+
+export const iconSize = style({
+  fontSize: 18,
 });
 
 export const dropdown = style({
+  maxHeight: 440,
+  background: "#fff",
+  border: "1px solid #ddd",
+  borderRadius: 8,
+  padding: 20,
+  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
   position: "absolute",
   top: "calc(100% + 8px)",
   left: 0,
   zIndex: 999,
-  background: "#fff",
-  border: "1px solid #ddd",
-  borderRadius: 8,
-  padding: 10,
-  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-  maxHeight: 440,
-  overflowY: "auto",
 });
 
 export const modalOverlay = style({
@@ -68,11 +73,12 @@ export const modalContent = style({
   overflowY: "auto",
 });
 
-export const actions = style({
+export const ButtonWrapper = style({
   display: "flex",
   justifyContent: "flex-end",
+  alignItems: "center",
   gap: 8,
-  marginTop: 8,
+  marginTop: 12,
 });
 
 export const confirmBtn = style({

@@ -13,23 +13,26 @@ export const inputBox = style({
   justifyContent: "space-between",
   border: "1px solid #dcdcdc",
   borderRadius: 8,
-  padding: "6px 10px",
+  padding: "10px 16px",
   background: "#fff",
   cursor: "pointer",
 });
 
 export const input = style({
-  border: "none",
-  outline: "none",
-  background: "transparent",
-  fontSize: 14,
   width: "100%",
+  border: "none",
+  background: "transparent",
+  outline: "none",
+  fontSize: 16,
 });
 
 export const iconWrap = style({
-  marginLeft: 8,
   display: "inline-flex",
   alignItems: "center",
+});
+
+export const iconSize = style({
+  fontSize: 18,
 });
 
 export const dropdown = style({

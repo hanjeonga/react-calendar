@@ -34,7 +34,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   };
 
   const renderIcon = () => {
-    if (!customIcon) return <FaRegCalendarAlt />;
+    if (!customIcon) return <FaRegCalendarAlt className={styles.iconSize} />;
     if (typeof customIcon === "string")
       return (
         <img

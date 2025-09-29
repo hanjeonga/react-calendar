@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DatePicker } from "./components/datePicker/DatePicker";
 import { RangePicker } from "./components/rangePicker/RangePicker";
 import { formatDate } from "./utils/format";
+import * as styles from "./App.css";
 
 export default function App() {
   const [single, setSingle] = useState<Date | null>(new Date());
@@ -14,16 +15,10 @@ export default function App() {
   });
 
   return (
-    <div
-      style={{
-        padding: 24,
-        fontFamily:
-          "system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial",
-      }}
-    >
+    <div className={styles.demoContainer}>
       <h1>Calendar Library Demo</h1>
 
-      <section style={{ marginBottom: 28 }}>
+      <section className={styles.demoSection}>
         <h2>DatePicker</h2>
         <DatePicker
           value={single}
@@ -32,7 +27,7 @@ export default function App() {
           displayMode="dropdown"
           monthFormat="en"
         />
-        <div style={{ marginTop: 8 }}>
+        <div className={styles.demoGap}>
           Selected: {single ? formatDate(single, "YYYY.MM.DD") : "—"}
         </div>
       </section>
@@ -47,7 +42,7 @@ export default function App() {
           displayMode="dropdown"
           monthFormat="en"
         />
-        <div style={{ marginTop: 8 }}>
+        <div className={styles.demoGap}>
           Range:{" "}
           {range.startDate ? formatDate(range.startDate, "YYYY.MM.DD") : "--"}{" "}
           {range.endDate ? ` ~ ${formatDate(range.endDate, "YYYY.MM.DD")}` : ""}
