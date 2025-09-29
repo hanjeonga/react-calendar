@@ -1,0 +1,117 @@
+button {
+  all: unset;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+/* 두 개의 input 박스 + 구분자 */
+.inputBox {
+  cursor: pointer;
+  min-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  width: 110px;
+  border: none;
+  background: transparent;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+.separator {
+  color: #444;
+  font-size: 16px;
+}
+
+.iconWrap {
+  display: inline-flex;
+  margin-left: 8px;
+}
+
+.iconSize {
+  font-size: 18px;
+}
+
+/* 달력 Dropdown */
+.dropdown {
+  max-height: 440px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 999;
+}
+
+/* 모달 */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  min-width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* 버튼 영역 */
+.ButtonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.confirmBtn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirmBtn:active,
+.confirmBtn:focus {
+  outline: none;
+  border: none;
+}
+
+.cancelBtn {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancelBtn:active,
+.cancelBtn:focus {
+  outline: none;
+  border: none;
+}

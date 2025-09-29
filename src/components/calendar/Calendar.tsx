@@ -3,7 +3,7 @@ import { useCalendar } from "../../hooks/useCalendar";
 import { CalendarHeader } from "./CalendarHeader";
 import { CalendarBody } from "./CalendarBody";
 import { CalendarCoreProps, RangeValue } from "../../types/calendar.type";
-import * as styles from "./Calendar.css";
+import "./Calendar.css";
 
 export const Calendar: React.FC<CalendarCoreProps> = ({
   mode = "single",
@@ -49,8 +49,31 @@ export const Calendar: React.FC<CalendarCoreProps> = ({
     onSelect?.({ startDate: date, endDate: null });
   };
 
-  return (
-    <div className={styles.wrapper}>
+  return mode === "single" ? (
+    <>
+      <CalendarHeader
+        year={year}
+        month={month}
+        onYearChange={setYear}
+        onPrevMonth={prevMonth}
+        onNextMonth={nextMonth}
+        monthFormat={monthFormat}
+      />
+      <CalendarBody
+        year={year}
+        month={month}
+        selected={singleValue}
+        range={rangeValue}
+        onDayClick={handleDay}
+        hoverDate={undefined}
+        setHoverDate={undefined}
+        locale={locale}
+        theme={theme}
+        threshold={threshold}
+      />
+    </>
+  ) : (
+    <div className="wrapper">
       <CalendarHeader
         year={year}
         month={month}

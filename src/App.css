@@ -1,0 +1,17 @@
+button {
+  all: unset;
+}
+
+.demoContainer {
+  padding: 24px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial;
+}
+
+.demoSection {
+  margin-bottom: 28px;
+}
+
+.demoGap {
+  margin-top: 8px;
+}

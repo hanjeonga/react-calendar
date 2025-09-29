@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./Calendar.css";
+import "./Calendar.css";
 import {
   getDaysInMonth,
   getFirstDayOfMonth,
@@ -73,13 +73,13 @@ export const CalendarBody: React.FC<Props> = ({
 
   return (
     <div>
-      <div className={styles.weekRow}>
+      <div className="weekRow">
         {Array.from({ length: 7 }).map((_, i) => (
           <div key={i}>{formatDay(i, locale)}</div>
         ))}
       </div>
 
-      <div className={styles.daysGrid}>
+      <div className="daysGrid">
         {weeks.flat().map((date, idx) => {
           if (!date) return <div key={idx} />;
           const selectedSingle = selected && isSameDay(date, selected);

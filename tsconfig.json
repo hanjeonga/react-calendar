@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
 
     "forceConsistentCasingInFileNames": true,
     "strict": true,

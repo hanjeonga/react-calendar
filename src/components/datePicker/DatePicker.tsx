@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import * as styles from "./DatePicker.css";
+import "./DatePicker.css";
 import { DatePickerProps } from "../../types/calendar.type";
 import { Calendar } from "../calendar/Calendar";
 import { formatDate } from "../../utils/format";
@@ -34,7 +34,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   };
 
   const renderIcon = () => {
-    if (!customIcon) return <FaRegCalendarAlt className={styles.iconSize} />;
+    if (!customIcon) return <FaRegCalendarAlt className="iconSize" />;
     if (typeof customIcon === "string")
       return (
         <img
@@ -47,29 +47,29 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   };
 
   return (
-    <div ref={ref} className={styles.container}>
+    <div ref={ref} className={"container"}>
       {customInput ? (
         <div onClick={() => setOpen((v) => !v)}>{customInput}</div>
       ) : (
         <div
-          className={styles.inputBox}
+          className="inputBox"
           role="button"
           aria-label="Select date"
           onClick={() => setOpen((v) => !v)}
         >
           <input
-            className={styles.input}
+            className="input"
             readOnly
             placeholder={formatDate(new Date(), dateFormat)}
             value={selected ? formatDate(selected, dateFormat) : ""}
             aria-label="Date input"
           />
-          <div className={styles.iconWrap}>{renderIcon()}</div>
+          <div className="iconWrap">{renderIcon()}</div>
         </div>
       )}
 
       {open && displayMode === "dropdown" && (
-        <div className={styles.dropdown}>
+        <div className="dropdown">
           <Calendar
             mode="single"
             value={selected}
