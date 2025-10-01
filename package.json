@@ -54,7 +54,11 @@
     "react",
     "calendar",
     "component",
-    "datepicker"
+    "datepicker",
+    "dateRange",
+    "date",
+    "dateInterval",
+    "hja"
   ],
   "author": "HanJeongA <mongndam@naver.com>",
   "license": "MIT",
