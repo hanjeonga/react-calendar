@@ -91,6 +91,10 @@ export default function App() {
 
 ## 다국어 예시
 
+- `locale` : 요일 & 버튼 표기
+- `monthFormat` : 월 표기
+- default : en
+
 ```javascript
 <RangePicker
   locale="ja" // 일본어
