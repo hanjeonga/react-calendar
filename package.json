@@ -1,7 +1,7 @@
 {
   "name": "react-calendar-byhja",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.1.2",
   "description": "A customizable React calendar component by hja.",
   "type": "module",
   "main": "./dist/react-calendar.umd.js",

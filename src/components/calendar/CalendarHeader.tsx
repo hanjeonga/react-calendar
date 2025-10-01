@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Calendar.css";
-import { formatMonth } from "../../utils/format";
-import { LocaleType } from "../../utils/locale";
+import { LocaleType, MONTHS } from "../../utils/locale";
 import { makeYearRange } from "../../utils/helpers";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -82,7 +81,7 @@ export const CalendarHeader: React.FC<Props> = ({
           <IoIosArrowBack className="monthButtonIcon" />
         </button>
         <div className="monthText">
-          {formatMonth(month - 1, monthFormat)} {year}
+          {MONTHS[monthFormat][month - 1]} {year}
         </div>
         <button
           className="monthButton"
