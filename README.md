@@ -18,7 +18,10 @@
   - 시작일과 종료일 구간은 다른 배경색/스타일 적용 가능
   - 시작일 클릭 후 **호버 시 날짜 구간 하이라이트**
 - **다국어 지원**
-  - 영어(en, default), 한국어(ko), 숫자(number)
+  - 월/요일, RangePicker/DatePicker 버튼 텍스트(확인/취소) 모두 locale 기반
+  - 기본: 영어(en), 한국어(ko), 숫자(number)
+  - 추가: 일본어(ja), 중국어(zh), 프랑스어(fr), 독일어(de), 스페인어(es), 이탈리아어(it), 러시아어(ru), 포르투갈어(pt)
+  - `locale` prop으로 전체 UI 언어 선택 가능
 - **포맷 커스터마이징**
   - 날짜 표시 형식 기본값: `YYYY.MM.DD`
   - `props.format` 으로 원하는 포맷 지정 가능
@@ -81,6 +84,24 @@ export default function App() {
     />
   );
 }
+```
+
+---
+
+## 다국어 예시
+
+```javascript
+<RangePicker
+  locale="ja" // 일본어
+  monthFormat="ja"
+  onChange={({ startDate, endDate }) => console.log(startDate, endDate)}
+/>
+
+<DatePicker
+  locale="zh" // 중국어
+  monthFormat="zh"
+  onChange={(date) => console.log(date)}
+/>
 ```
 
 ---
@@ -156,5 +177,4 @@ yarn build
 
 - 다중 날짜 선택 지원
 - 키보드 내비게이션 강화
-- 다국어 확장 (예: 일본어, 중국어)
 - 테스트 코드 (Vitest, Stotybook)

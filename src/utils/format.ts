@@ -1,36 +1,7 @@
-import { LocaleType } from "./locale";
+import { LocaleType, MONTHS } from "./locale";
 
-export const formatMonth = (idx0: number, locale: LocaleType = "en") => {
-  if (locale === "ko")
-    return [
-      "1월",
-      "2월",
-      "3월",
-      "4월",
-      "5월",
-      "6월",
-      "7월",
-      "8월",
-      "9월",
-      "10월",
-      "11월",
-      "12월",
-    ][idx0];
-  if (locale === "number") return String(idx0 + 1);
-  return [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ][idx0];
+export const formatMonth = (monthIndex: number, locale: LocaleType) => {
+  return MONTHS[locale][monthIndex];
 };
 
 export const formatDay = (dayIndex: number, locale: LocaleType = "en") => {
