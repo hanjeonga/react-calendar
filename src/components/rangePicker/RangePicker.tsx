@@ -6,6 +6,7 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useRangeSelect } from "../../hooks/useRangeSelect";
 import { formatDate } from "../../utils/format";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { BUTTON_TEXT } from "../../utils/locale";
 
 export const RangePicker: React.FC<RangePickerProps> = ({
   startDate,
@@ -114,10 +115,10 @@ export const RangePicker: React.FC<RangePickerProps> = ({
                 setOpen(false);
               }}
             >
-              취소
+              {BUTTON_TEXT[locale].cancel}
             </button>
             <button className="confirmBtn" onClick={handleConfirm}>
-              확인
+              {BUTTON_TEXT[locale].confirm}
             </button>
           </div>
         </div>
@@ -153,10 +154,10 @@ export const RangePicker: React.FC<RangePickerProps> = ({
                   setOpen(false);
                 }}
               >
-                취소
+                {BUTTON_TEXT[locale].cancel}
               </button>
               <button className="confirmBtn" onClick={handleConfirm}>
-                확인
+                {BUTTON_TEXT[locale].confirm}
               </button>
             </div>
           </div>

@@ -9,6 +9,7 @@ import {
 import { formatDay } from "../../utils/format";
 import { RangeValue, CalendarCoreProps } from "../../types/calendar.type";
 import { CalendarDay } from "./CalendarDay";
+import { LocaleType, WEEKDAYS } from "../../utils/locale";
 
 interface Props {
   year: number;
@@ -18,7 +19,7 @@ interface Props {
   onDayClick: (d: Date) => void;
   hoverDate?: Date | null;
   setHoverDate?: (d: Date | null) => void;
-  locale?: "en" | "ko" | "number";
+  locale?: LocaleType;
   theme?: CalendarCoreProps["theme"];
   threshold?: number;
 }
@@ -75,7 +76,7 @@ export const CalendarBody: React.FC<Props> = ({
     <div>
       <div className="weekRow">
         {Array.from({ length: 7 }).map((_, i) => (
-          <div key={i}>{formatDay(i, locale)}</div>
+          <div key={i}>{WEEKDAYS[locale || "en"][i]}</div>
         ))}
       </div>
 
