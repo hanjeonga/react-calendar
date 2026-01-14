@@ -41,9 +41,9 @@
 
 ```bash
 # 설치
-yarn add your-calendar-lib
+yarn add react-calendar-byhja
 # 또는
-npm install your-calendar-lib
+npm install react-calendar-byhja
 ```
 
 ## 🛠 Usage
@@ -51,7 +51,7 @@ npm install your-calendar-lib
 - **DatePicker (단일 날짜 선택)**
 
 ```javascript
-import { DatePicker } from "your-calendar-lib";
+import { DatePicker } from "react-calendar-byhja";
 
 export default function App() {
   return (
@@ -70,7 +70,7 @@ export default function App() {
 - **RangePicker (날짜 범위 선택)**
 
 ```javascript
-import { RangePicker } from "your-calendar-lib";
+import { RangePicker } from "react-calendar-byhja";
 
 export default function App() {
   return (
